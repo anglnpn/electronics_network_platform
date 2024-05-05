@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
-
-from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 from network_platform.models import (
     Contact,
@@ -18,6 +17,7 @@ from network_platform.serializers import (
     RetailNetworkSerializer,
     SoleTraderSerializer
 )
+from users.permissions import IsActive
 
 
 class ContactCreateAPIView(generics.CreateAPIView):
@@ -26,6 +26,7 @@ class ContactCreateAPIView(generics.CreateAPIView):
     """
     serializer_class = ContactSerializer
     queryset = Contact.objects.all()
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ContactRetrieveAPIView(generics.RetrieveAPIView):
@@ -34,6 +35,7 @@ class ContactRetrieveAPIView(generics.RetrieveAPIView):
     """
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ContactListAPIView(generics.ListAPIView):
@@ -42,6 +44,7 @@ class ContactListAPIView(generics.ListAPIView):
     """
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ContactUpdateAPIView(generics.UpdateAPIView):
@@ -50,6 +53,7 @@ class ContactUpdateAPIView(generics.UpdateAPIView):
     """
     serializer_class = ContactSerializer
     queryset = Contact.objects.all()
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ContactDeleteAPIView(generics.DestroyAPIView):
@@ -58,6 +62,7 @@ class ContactDeleteAPIView(generics.DestroyAPIView):
     """
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ProductCreateAPIView(generics.CreateAPIView):
@@ -66,6 +71,7 @@ class ProductCreateAPIView(generics.CreateAPIView):
     """
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ProductDeleteAPIView(generics.DestroyAPIView):
@@ -74,6 +80,7 @@ class ProductDeleteAPIView(generics.DestroyAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ProductRetrieveAPIView(generics.RetrieveAPIView):
@@ -82,6 +89,7 @@ class ProductRetrieveAPIView(generics.RetrieveAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ProductUpdateAPIView(generics.UpdateAPIView):
@@ -90,6 +98,7 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
     """
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ProductListAPIView(generics.ListAPIView):
@@ -98,6 +107,7 @@ class ProductListAPIView(generics.ListAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ElectroFactoryCreateAPIView(generics.CreateAPIView):
@@ -106,6 +116,7 @@ class ElectroFactoryCreateAPIView(generics.CreateAPIView):
     """
     serializer_class = ElectroFactorySerializer
     queryset = ElectronicsFactory.objects.all()
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ElectroFactoryListAPIView(generics.ListAPIView):
@@ -114,6 +125,7 @@ class ElectroFactoryListAPIView(generics.ListAPIView):
     """
     queryset = ElectronicsFactory.objects.all()
     serializer_class = ElectroFactorySerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ElectroFactoryRetrieveAPIView(generics.RetrieveAPIView):
@@ -122,6 +134,7 @@ class ElectroFactoryRetrieveAPIView(generics.RetrieveAPIView):
     """
     queryset = ElectronicsFactory.objects.all()
     serializer_class = ElectroFactorySerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ElectroFactoryUpdateAPIView(generics.UpdateAPIView):
@@ -130,6 +143,7 @@ class ElectroFactoryUpdateAPIView(generics.UpdateAPIView):
     """
     serializer_class = ElectroFactorySerializer
     queryset = ElectronicsFactory.objects.all()
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class ElectroFactoryDeleteAPIView(generics.DestroyAPIView):
@@ -138,6 +152,7 @@ class ElectroFactoryDeleteAPIView(generics.DestroyAPIView):
     """
     queryset = ElectronicsFactory.objects.all()
     serializer_class = ElectroFactorySerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class RetailNetworkCreateAPIView(generics.CreateAPIView):
@@ -146,6 +161,7 @@ class RetailNetworkCreateAPIView(generics.CreateAPIView):
     """
     serializer_class = RetailNetworkSerializer
     queryset = RetailNetwork.objects.all()
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class RetailNetworkRetrieveAPIView(generics.RetrieveAPIView):
@@ -154,6 +170,7 @@ class RetailNetworkRetrieveAPIView(generics.RetrieveAPIView):
     """
     queryset = RetailNetwork.objects.all()
     serializer_class = RetailNetworkSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class RetailNetworkListAPIView(generics.ListAPIView):
@@ -162,6 +179,7 @@ class RetailNetworkListAPIView(generics.ListAPIView):
     """
     queryset = RetailNetwork.objects.all()
     serializer_class = RetailNetworkSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class RetailNetworkUpdateAPIView(generics.UpdateAPIView):
@@ -170,6 +188,7 @@ class RetailNetworkUpdateAPIView(generics.UpdateAPIView):
     """
     serializer_class = RetailNetworkSerializer
     queryset = RetailNetwork.objects.all()
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class RetailNetworkDeleteAPIView(generics.DestroyAPIView):
@@ -178,6 +197,7 @@ class RetailNetworkDeleteAPIView(generics.DestroyAPIView):
     """
     queryset = RetailNetwork.objects.all()
     serializer_class = RetailNetworkSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class SoleTraderCreateAPIView(generics.CreateAPIView):
@@ -186,6 +206,7 @@ class SoleTraderCreateAPIView(generics.CreateAPIView):
     """
     serializer_class = SoleTraderSerializer
     queryset = SoleTrader.objects.all()
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class SoleTraderListAPIView(generics.ListAPIView):
@@ -194,6 +215,7 @@ class SoleTraderListAPIView(generics.ListAPIView):
     """
     queryset = SoleTrader.objects.all()
     serializer_class = SoleTraderSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class SoleTraderRetrieveAPIView(generics.RetrieveAPIView):
@@ -202,6 +224,7 @@ class SoleTraderRetrieveAPIView(generics.RetrieveAPIView):
     """
     queryset = SoleTrader.objects.all()
     serializer_class = SoleTraderSerializer
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class SoleTraderUpdateAPIView(generics.UpdateAPIView):
@@ -210,6 +233,7 @@ class SoleTraderUpdateAPIView(generics.UpdateAPIView):
     """
     serializer_class = SoleTraderSerializer
     queryset = SoleTrader.objects.all()
+    permission_classes = [IsAuthenticated, IsActive]
 
 
 class SoleTraderDeleteAPIView(generics.DestroyAPIView):
@@ -218,3 +242,4 @@ class SoleTraderDeleteAPIView(generics.DestroyAPIView):
     """
     queryset = SoleTrader.objects.all()
     serializer_class = SoleTraderSerializer
+    permission_classes = [IsAuthenticated, IsActive]
