@@ -19,6 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user/', include('user.urls', namespace='users')),
-    path('token/', include('api.urls', namespace='token'))
+    # path('user/', include('users.urls', namespace='users')),
+    path('token/', include('api.urls', namespace='token')),
+    path('/', include('network_platform.urls', namespace='network_platform')),
+
 ]
