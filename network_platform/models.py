@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class Contact(models.Model):
@@ -116,6 +117,21 @@ class SoleTrader(models.Model):
     created_date = models.DateTimeField(
         auto_now_add=True, verbose_name='дата создания')
 
+    def clean(self):
+        """
+        Метод проверяет, что заполнено
+        одно поле: завод или розничная сеть.
+        """
+        if self.provider_factory and self.provider_retailer:
+            raise ValidationError('Может быть только один поставщик!')
+        elif not self.provider_factory and not self.provider_retailer:
+            raise ValidationError(
+                'Необходимо заполнить одно поле: '
+                'завод или розничная сеть.'
+            )
+
     class Meta:
         verbose_name = 'индивидуальный предприниматель'
         verbose_name_plural = 'индивидуальные предприниматели'
+
+
