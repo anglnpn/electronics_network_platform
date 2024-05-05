@@ -206,7 +206,7 @@ class SoleTraderCreateAPIView(generics.CreateAPIView):
     """
     serializer_class = SoleTraderSerializer
     queryset = SoleTrader.objects.all()
-    permission_classes = [IsAuthenticated, IsActive]
+    permission_classes = [IsAuthenticated]
 
 
 class SoleTraderListAPIView(generics.ListAPIView):

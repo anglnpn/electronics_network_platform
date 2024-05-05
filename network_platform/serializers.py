@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.core.exceptions import ValidationError
 
 from network_platform.models import (
     Contact,
@@ -54,3 +55,20 @@ class SoleTraderSerializer(serializers.ModelSerializer):
     class Meta:
         model = ElectronicsFactory
         fields = '__all__'
+
+    def validate(self, attrs):
+        """
+        Метод проверяет, что заполнено
+        одно поле: завод или розничная сеть.
+        """
+        provider_factory = attrs.get('provider_factory')
+        provider_retailer = attrs.get('provider_retailer')
+
+        if provider_factory and provider_retailer:
+            raise serializers.ValidationError(
+                "Одновременно не может быть два поставщика")
+        if not provider_factory and not provider_retailer:
+            raise serializers.ValidationError(
+                "Хотя бы один поставщик должен быть указан")
+
+        return attrs

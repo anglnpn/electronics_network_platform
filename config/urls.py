@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('user/', include('users.urls', namespace='users')),
     path('token/', include('api.urls', namespace='token')),
-    path('/', include('network_platform.urls', namespace='network_platform')),
+    path('main/', include('network_platform.urls', namespace='network_platform')),
 
 ]
