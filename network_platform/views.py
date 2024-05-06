@@ -127,6 +127,13 @@ class ElectroFactoryListAPIView(generics.ListAPIView):
     serializer_class = ElectroFactorySerializer
     permission_classes = [IsAuthenticated, IsActive]
 
+    def get_queryset(self):
+        """
+        Фильтрация объектов по стране.
+        """
+        country = self.request.query_params.get('country')
+        return self.queryset.filter(contacts__country=country)
+
 
 class ElectroFactoryRetrieveAPIView(generics.RetrieveAPIView):
     """
@@ -181,6 +188,13 @@ class RetailNetworkListAPIView(generics.ListAPIView):
     serializer_class = RetailNetworkSerializer
     permission_classes = [IsAuthenticated, IsActive]
 
+    def get_queryset(self):
+        """
+        Фильтрация объектов по стране.
+        """
+        country = self.request.query_params.get('country')
+        return self.queryset.filter(contacts__country=country)
+
 
 class RetailNetworkUpdateAPIView(generics.UpdateAPIView):
     """
@@ -216,6 +230,13 @@ class SoleTraderListAPIView(generics.ListAPIView):
     queryset = SoleTrader.objects.all()
     serializer_class = SoleTraderSerializer
     permission_classes = [IsAuthenticated, IsActive]
+
+    def get_queryset(self):
+        """
+        Фильтрация объектов по стране.
+        """
+        country = self.request.query_params.get('country')
+        return self.queryset.filter(contacts__country=country)
 
 
 class SoleTraderRetrieveAPIView(generics.RetrieveAPIView):
