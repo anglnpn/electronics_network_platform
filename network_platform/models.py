@@ -36,6 +36,9 @@ class Product(models.Model):
         auto_now_add=True,
         verbose_name='дата создания продукта')
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
@@ -57,6 +60,9 @@ class ElectronicsFactory(models.Model):
         verbose_name='продукт')
     created_date = models.DateTimeField(
         auto_now_add=True, verbose_name='дата создания')
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'завод'
@@ -84,6 +90,9 @@ class RetailNetwork(models.Model):
         decimal_places=2, verbose_name='задолженность')
     created_date = models.DateTimeField(
         auto_now_add=True, verbose_name='дата создания')
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'розничная сеть'
@@ -117,6 +126,9 @@ class SoleTrader(models.Model):
     created_date = models.DateTimeField(
         auto_now_add=True, verbose_name='дата создания')
 
+    def __str__(self):
+        return self.name
+
     def clean(self):
         """
         Метод проверяет, что заполнено
@@ -133,5 +145,3 @@ class SoleTrader(models.Model):
     class Meta:
         verbose_name = 'индивидуальный предприниматель'
         verbose_name_plural = 'индивидуальные предприниматели'
-
-

@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from network_platform.models import (
     Contact,
     Product,
-    ElectronicsFactory)
+    ElectronicsFactory, SoleTrader, RetailNetwork)
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -43,8 +43,32 @@ class RetailNetworkSerializer(serializers.ModelSerializer):
     """
 
     class Meta:
-        model = ElectronicsFactory
+        model = RetailNetwork
         fields = '__all__'
+
+    def validate(self, attrs):
+        if self.instance:
+            if 'debt' in attrs:
+                raise serializers.ValidationError(
+                    "Запрещено обновлять задолженность.")
+        return attrs
+
+
+class RetailNetworkUpdateSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для розничной сети.
+    """
+
+    class Meta:
+        model = RetailNetwork
+        fields = '__all__'
+
+    def validate(self, attrs):
+        if self.instance:
+            if 'debt' in attrs:
+                raise serializers.ValidationError(
+                    "Запрещено обновлять задолженность.")
+        return attrs
 
 
 class SoleTraderSerializer(serializers.ModelSerializer):
@@ -53,7 +77,7 @@ class SoleTraderSerializer(serializers.ModelSerializer):
     """
 
     class Meta:
-        model = ElectronicsFactory
+        model = SoleTrader
         fields = '__all__'
 
     def validate(self, attrs):
@@ -67,8 +91,28 @@ class SoleTraderSerializer(serializers.ModelSerializer):
         if provider_factory and provider_retailer:
             raise serializers.ValidationError(
                 "Одновременно не может быть два поставщика")
-        if not provider_factory and not provider_retailer:
+        elif not provider_factory and not provider_retailer:
             raise serializers.ValidationError(
                 "Хотя бы один поставщик должен быть указан")
 
+        return attrs
+
+
+class SoleTraderUpdateSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для индивидуального предпринимателя.
+    Применяется в контроллере для обновления информации
+    о поставщике.
+    Запрещает обновлять поле 'debt'.
+    """
+
+    class Meta:
+        model = SoleTrader
+        fields = '__all__'
+
+    def validate(self, attrs):
+        if self.instance:
+            if 'debt' in attrs:
+                raise serializers.ValidationError(
+                    "Запрещено обновлять задолженность.")
         return attrs

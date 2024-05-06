@@ -15,7 +15,7 @@ from network_platform.serializers import (
     ProductSerializer,
     ElectroFactorySerializer,
     RetailNetworkSerializer,
-    SoleTraderSerializer
+    SoleTraderSerializer, SoleTraderUpdateSerializer, RetailNetworkUpdateSerializer
 )
 from users.permissions import IsActive
 
@@ -186,7 +186,7 @@ class RetailNetworkUpdateAPIView(generics.UpdateAPIView):
     """
     Изменение розничной сети.
     """
-    serializer_class = RetailNetworkSerializer
+    serializer_class = RetailNetworkUpdateSerializer
     queryset = RetailNetwork.objects.all()
     permission_classes = [IsAuthenticated, IsActive]
 
@@ -231,7 +231,7 @@ class SoleTraderUpdateAPIView(generics.UpdateAPIView):
     """
     Изменение индивидуального предпринимателя.
     """
-    serializer_class = SoleTraderSerializer
+    serializer_class = SoleTraderUpdateSerializer
     queryset = SoleTrader.objects.all()
     permission_classes = [IsAuthenticated, IsActive]
 
