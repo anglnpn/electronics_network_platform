@@ -24,11 +24,11 @@ urlpatterns = [
     path('contact/update/<int:pk>/', ContactUpdateAPIView.as_view(), name='contact_update'),
     path('contact/delete/<int:pk>/', ContactDeleteAPIView.as_view(), name='contact_delete'),
 
-    path('products/create/', ProductCreateAPIView.as_view(), name='products_create'),
-    path('products/list/', ProductListAPIView.as_view(), name='products_list'),
-    path('products/update/<int:pk>/', ProductUpdateAPIView.as_view(), name='products_update'),
-    path('products/delete/<int:pk>/', ProductDeleteAPIView.as_view(), name='products_delete'),
-    path('products/<int:pk>/', ProductRetrieveAPIView.as_view(), name='products_get'),
+    path('product/create/', ProductCreateAPIView.as_view(), name='products_create'),
+    path('product/list/', ProductListAPIView.as_view(), name='products_list'),
+    path('product/update/<int:pk>/', ProductUpdateAPIView.as_view(), name='products_update'),
+    path('product/delete/<int:pk>/', ProductDeleteAPIView.as_view(), name='products_delete'),
+    path('product/<int:pk>/', ProductRetrieveAPIView.as_view(), name='products_get'),
 
     path('factory/create/', ElectroFactoryCreateAPIView.as_view(), name='factory_create'),
     path('factory/list/', ElectroFactoryListAPIView.as_view(), name='factory_list'),

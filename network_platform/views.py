@@ -132,7 +132,7 @@ class ElectroFactoryListAPIView(generics.ListAPIView):
         Фильтрация объектов по стране.
         """
         country = self.request.query_params.get('country')
-        return self.queryset.filter(contacts__country=country)
+        return self.queryset.filter(contact__country=country)
 
 
 class ElectroFactoryRetrieveAPIView(generics.RetrieveAPIView):
@@ -193,7 +193,7 @@ class RetailNetworkListAPIView(generics.ListAPIView):
         Фильтрация объектов по стране.
         """
         country = self.request.query_params.get('country')
-        return self.queryset.filter(contacts__country=country)
+        return self.queryset.filter(contact__country=country)
 
 
 class RetailNetworkUpdateAPIView(generics.UpdateAPIView):
@@ -236,7 +236,9 @@ class SoleTraderListAPIView(generics.ListAPIView):
         Фильтрация объектов по стране.
         """
         country = self.request.query_params.get('country')
-        return self.queryset.filter(contacts__country=country)
+        obj_queryset = self.permission_classes
+        if obj_queryset:
+            return self.queryset.filter(contact__country=country)
 
 
 class SoleTraderRetrieveAPIView(generics.RetrieveAPIView):

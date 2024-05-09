@@ -16,8 +16,17 @@ class Contact(models.Model):
         max_length=200, verbose_name='город')
     street = models.CharField(
         max_length=200, verbose_name='улица')
-    number_home = models.IntegerField(
+    number_home = models.PositiveIntegerField(
         verbose_name='номер дома')
+
+    def __str__(self):
+        return f'{self.email}, {self.country}, ' \
+               f'{self.city}, {self.street},' \
+               f'{self.number_home}'
+
+    class Meta:
+        verbose_name = 'контактные данные'
+        verbose_name_plural = 'контактные данные'
 
     class Meta:
         verbose_name = 'контактные данные'
@@ -52,10 +61,10 @@ class ElectronicsFactory(models.Model):
     """
     name = models.CharField(
         max_length=100, verbose_name='название')
-    contacts = models.ForeignKey(
+    contact = models.ForeignKey(
         Contact, on_delete=models.CASCADE,
         verbose_name='контактные данные')
-    products = models.ForeignKey(
+    product = models.ForeignKey(
         Product, on_delete=models.CASCADE,
         verbose_name='продукт')
     created_date = models.DateTimeField(
@@ -76,13 +85,13 @@ class RetailNetwork(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='название розничной сети')
-    contacts = models.ForeignKey(
+    contact = models.ForeignKey(
         Contact, on_delete=models.CASCADE,
         verbose_name='контактные данные')
-    products = models.ForeignKey(
+    product = models.ForeignKey(
         Product, on_delete=models.CASCADE,
         verbose_name='продукт')
-    provider_from_factory = models.ForeignKey(
+    provider_factory = models.ForeignKey(
         ElectronicsFactory, on_delete=models.CASCADE,
         verbose_name='поставки с завода')
     debt = models.DecimalField(
@@ -106,10 +115,10 @@ class SoleTrader(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='название и предпринимателя')
-    contacts = models.ForeignKey(
+    contact = models.ForeignKey(
         Contact, on_delete=models.CASCADE,
         verbose_name='контактные данные')
-    products = models.ForeignKey(
+    product = models.ForeignKey(
         Product, on_delete=models.CASCADE,
         verbose_name='продукт')
     provider_factory = models.ForeignKey(
