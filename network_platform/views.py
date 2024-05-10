@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
@@ -15,7 +14,9 @@ from network_platform.serializers import (
     ProductSerializer,
     ElectroFactorySerializer,
     RetailNetworkSerializer,
-    SoleTraderSerializer, SoleTraderUpdateSerializer, RetailNetworkUpdateSerializer
+    SoleTraderSerializer,
+    SoleTraderUpdateSerializer,
+    RetailNetworkUpdateSerializer
 )
 from users.permissions import IsActive
 
@@ -236,9 +237,7 @@ class SoleTraderListAPIView(generics.ListAPIView):
         Фильтрация объектов по стране.
         """
         country = self.request.query_params.get('country')
-        obj_queryset = self.permission_classes
-        if obj_queryset:
-            return self.queryset.filter(contact__country=country)
+        return self.queryset.filter(contact__country=country)
 
 
 class SoleTraderRetrieveAPIView(generics.RetrieveAPIView):

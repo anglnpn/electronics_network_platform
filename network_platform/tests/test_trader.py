@@ -1,4 +1,5 @@
 import pytest
+
 from rest_framework.test import APIClient
 
 client = APIClient()
@@ -7,8 +8,10 @@ client = APIClient()
 class TestRetail:
     @pytest.mark.django_db
     def test_create_trader(
-            self, contact,
-            product, factory,
+            self,
+            contact,
+            product,
+            factory,
             get_bearer_token
     ):
         url = "/main/trader/create/"
@@ -29,8 +32,10 @@ class TestRetail:
 
     @pytest.mark.django_db
     def test_create_trader_fail(
-            self, contact,
-            product, get_bearer_token
+            self,
+            contact,
+            product,
+            get_bearer_token
     ):
         url = "/main/trader/create/"
 
@@ -125,4 +130,3 @@ class TestRetail:
             HTTP_AUTHORIZATION=f'Bearer {get_bearer_token}')
 
         assert response.status_code == 204
-

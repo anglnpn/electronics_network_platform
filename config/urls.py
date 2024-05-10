@@ -38,6 +38,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # пользователь
     path('user/', include('users.urls', namespace='users')),
+    # токен
     path('api/', include('api.urls', namespace='token')),
     # основное приложение
     path('main/', include('network_platform.urls', namespace='network_platform')),

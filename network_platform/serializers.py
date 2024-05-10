@@ -1,10 +1,12 @@
 from rest_framework import serializers
-from django.core.exceptions import ValidationError
 
 from network_platform.models import (
     Contact,
     Product,
-    ElectronicsFactory, SoleTrader, RetailNetwork)
+    ElectronicsFactory,
+    SoleTrader,
+    RetailNetwork
+)
 
 
 class ContactSerializer(serializers.ModelSerializer):

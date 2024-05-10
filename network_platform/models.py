@@ -28,10 +28,6 @@ class Contact(models.Model):
         verbose_name = 'контактные данные'
         verbose_name_plural = 'контактные данные'
 
-    class Meta:
-        verbose_name = 'контактные данные'
-        verbose_name_plural = 'контактные данные'
-
 
 class Product(models.Model):
     """

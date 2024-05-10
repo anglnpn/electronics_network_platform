@@ -1,8 +1,6 @@
 import pytest
-from rest_framework import status
-from rest_framework.test import APIClient
 
-from users.models import User
+from rest_framework.test import APIClient
 
 client = APIClient()
 
@@ -10,8 +8,10 @@ client = APIClient()
 class TestRetail:
     @pytest.mark.django_db
     def test_create_retail(
-            self, contact,
-            product, factory,
+            self,
+            contact,
+            product,
+            factory,
             get_bearer_token
     ):
         url = "/main/retail/create/"
@@ -32,8 +32,11 @@ class TestRetail:
 
     @pytest.mark.django_db
     def test_create_retail_fail(
-            self, contact,
-            product, get_bearer_token):
+            self,
+            contact,
+            product,
+            get_bearer_token
+    ):
         url = "/main/retail/create/"
 
         data = {
@@ -87,7 +90,9 @@ class TestRetail:
 
     @pytest.mark.django_db
     def test_get_list_retail(
-            self, get_bearer_token):
+            self,
+            get_bearer_token
+    ):
         url = "/main/retail/list/?country=test"
 
         response = client.get(

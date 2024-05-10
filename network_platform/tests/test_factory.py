@@ -1,8 +1,7 @@
 import pytest
-from rest_framework import status
+
 from rest_framework.test import APIClient
 
-from users.models import User
 
 client = APIClient()
 
@@ -10,12 +9,12 @@ client = APIClient()
 class TestElectroFactory:
     @pytest.mark.django_db
     def test_create_factory(
-            self, contact,
-            product, get_bearer_token):
-        """
-        Тест на успешное создание модели
-        завода.
-        """
+            self,
+            contact,
+            product,
+            get_bearer_token
+    ):
+
         url = "/main/factory/create/"
 
         data = {
@@ -32,8 +31,11 @@ class TestElectroFactory:
 
     @pytest.mark.django_db
     def test_create_factory_fail(
-            self, contact,
-            product, get_bearer_token):
+            self,
+            contact,
+            product,
+            get_bearer_token
+    ):
         url = "/main/factory/create/"
 
         data = {
@@ -67,7 +69,9 @@ class TestElectroFactory:
 
     @pytest.mark.django_db
     def test_get_list_factory(
-            self, get_bearer_token):
+            self,
+            get_bearer_token
+    ):
         url = "/main/factory/list/?country=test"
 
         response = client.get(
